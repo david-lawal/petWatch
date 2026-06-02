@@ -1,0 +1,46 @@
+<?php require('template/header.phtml'); ?>
+
+<div class="container mt-5 mb-5">
+    <?php if (!$view->pet): ?>
+        <div class="alert alert-danger text-center">Pet not found.</div>
+    <?php else: ?>
+        <h1 class="fw-bold text-center-mb-4 text-success">
+            Sightings for <?= htmlspecialchars($view->pet->getName()); ?>
+        </h1>
+
+        <div class="card mb-4 shadow-sm border-0 bg-light">
+            <div class="card-body text-center">
+                <h5 class="fw-bold mb-2">
+                    <?= htmlspecialchars($view->pet->getSpecies()); ?> (<?= htmlspecialchars($view->pet->getBreed()); ?>)
+                </h5>
+                <p class="text-muted mb-2"><?= htmlspecialchars($view->pet->getDescription()); ?></p>
+                <span class="badge <?= strtolower($view->pet->getStatus()) === 'lost' ? 'bg-danger' : 'bg-success'; ?>">
+                    <?= htmlspecialchars(ucfirst($view->pet->getStatus())); ?>
+                </span
+                <small class="text-muted d-block mt-2">
+                    Reported: <?= htmlspecialchars($view->pet->getDateReported()); ?>
+                </small>
+            </div>
+        </div>
+
+        <?php if (empty($view->sightings)): ?>
+            <div class="alert alert-info text-center">No sightings have been reported yet.</div>
+        <?php else: ?>
+            <div class="list-group mb-4 shadow-sm">
+                <?php foreach ($view->sightings as $sighting): ?>
+                    <div class="list-group-item">
+                        <p class="mb-1"><strong>Comment:</strong> <?= htmlspecialchars($sighting['comment']); ?></p>
+                        <small class="text-muted">
+                            Reported by <?= htmlspecialchars(isset($sighting['username']) ? $sighting['username'] : 'Unknown'); ?> on
+                            <?= htmlspecialchars($sighting['timestamp']); ?><br>
+                            Location: (Lat <?= htmlspecialchars($sighting['latitude']); ?>,
+                            Lng <?= htmlspecialchars($sighting['longitude']); ?>)
+                        </small>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>
+
+<?php require('template/footer.phtml'); ?>

@@ -1,0 +1,29 @@
+<?php require('template/header.phtml'); ?>
+
+<main class="container mt-5 mb-5">
+    <h1 class="text-center mb-4 fw-bold">Search Pets</h1>
+
+    <input type="hidden" id="isLoggedIn" value="<?= isset($_SESSION['username']) ? '1' : '0' ?>">
+
+    <div class="mb-4">
+        <div class="input-group">
+            <input
+                type="text"
+                id="liveSearchInput"
+                class="form-control"
+                placeholder="Search by name, species, breed, color or status..."
+            >
+            <button class="btn btn-primary-green" type="button">Live Search</button>
+        </div>
+    </div>
+
+    <div id="searchResults" class="row">
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                <strong>Start typing to search for pets.</strong>
+            </div>
+        </div>
+    </div>
+</main>
+
+<?php require('template/footer.phtml'); ?>

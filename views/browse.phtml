@@ -1,0 +1,55 @@
+<?php require ('template/header.phtml') ?>
+
+<div class="container mt-5 mb-5">
+    <h1 class="text-center mb-4 fw-bold">Browse Pets</h1>
+
+    <?php if (empty($view->petDataSet)):  ?>
+        <div class="alert alert-info text-center">
+            <strong>No pets found in the system yet.</strong>
+        </div>
+    <?php else: ?>
+        <div class="row">
+            <?php foreach ($view->petDataSet as $pet): ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card-body text-center border rounded shadow-sm p-3 bg-light">
+                        <h5 class="card-title fw-bold"><?= htmlspecialchars($pet->getName()) ?></h5>
+                        <p class="card-text mb-1">
+                            <strong>Species:</strong> <?= htmlspecialchars($pet->getSpecies()) ?><br>
+
+                            <?php if($pet->getStatus()): ?>
+                                <strong>Status:</strong>
+                                <span class="badge <?= strtolower($pet->getStatus()) === 'lost' ? 'bg-danger' : 'bg-success' ?>">
+                        <?= htmlspecialchars($pet->getStatus()) ?>
+                    </span><br>
+                            <?php endif; ?>
+
+                            <small class="text-muted">
+                                Reported: <?= htmlspecialchars($pet->getDateReported()) ?>
+                            </small>
+                        </p>
+
+                        <p class="card-text small mt-2">
+                            <?= nl2br(htmlspecialchars($pet->getDescription())) ?>
+                        </p>
+
+                        <?php if (isset($_SESSION['username'])): ?>
+                            <div class="mt-3">
+                                <a href="leaveSighting.php?pet_id=<?= htmlspecialchars($pet->getId()); ?>"
+                                   class="btn btn-primary-green btn-sm rounded-pill shadow-sm">
+                                    Leave Sighting
+                                </a>
+                                <a href="viewSighting.php?pet_id=<?= htmlspecialchars($pet->getId()); ?>"
+                                   class="btn btn-primary-green btn-sm rounded-pill shadow-sm">
+                                    View Sightings
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
+</div>
+
+<?php require ('template/footer.phtml') ?>

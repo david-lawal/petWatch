@@ -1,0 +1,29 @@
+<?php require('template/header.phtml') ?>
+
+<div class="container mt-5 mb-5">
+    <h1 class="text-center mb-4 fw-bold">Edit Pet</h1>
+
+    <form method="POST" class="p-4 border rounded shadow-sm bg-light">
+        <div class="row g-3">
+            <div class="col-md-4"><input type="text" name="name" class="form-control" value="<?= htmlspecialchars($view->pet->getName()); ?>" required></div>
+            <div class="col-md-4"><input type="text" name="species" class="form-control" value="<?= htmlspecialchars($view->pet->getSpecies()); ?>" required></div>
+            <div class="col-md-4"><input type="text" name="breed" class="form-control" value="<?= htmlspecialchars($view->pet->getBreed()); ?>"></div>
+            <div class="col-md-4"><input type="text" name="color" class="form-control" value="<?= htmlspecialchars($view->pet->getColor()); ?>"></div>
+            <div class="col-md-4">
+                <select name="status" class="form-select">
+                    <option value="lost" <?= $view->pet->getStatus() === 'lost' ? 'selected' : '' ?>>Lost</option>
+                    <option value="found" <?= $view->pet->getStatus() === 'found' ? 'selected' : '' ?>>Found</option>
+                </select>
+            </div>
+            <div class="col-md-8">
+                <textarea name="description" class="form-control" rows="2"><?= htmlspecialchars($view->pet->getDescription()); ?></textarea>
+            </div>
+            <div class="col-12 text-end">
+                <button type="submit" name="update" class="btn btn-primary-green rounded-pill">Save Changes</button>
+                <a href="manage.php" class="btn btn-secondary rounded-pill ms-2">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<?php require('template/footer.phtml') ?>

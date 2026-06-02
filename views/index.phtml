@@ -1,0 +1,53 @@
+<?php require('template/header.phtml') ?>
+
+<header class="hero-section d-flex align-items-center">
+    <div class="container text-center text-light">
+        <h1 class="text-dark">Welcome to petWatch</h1>
+        <p class="text-dark">Every paw deserves a way home.</p>
+    </div>
+</header>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div  class="col-md-4 mb-4">
+                <a href="browse.php" class="browse-card">
+                    <img src="/clientserver/images/browse.png" alt="Browse pets" class="browse-icon">
+                    <h2>Browse</h2>
+                    <p>View missing pets and their last locations.</p>
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a href="search.php" class="browse-card">
+                    <img src="/clientserver/images/search.png" alt="Search pet descriptions" class="browse-icon">
+                    <h2>Search</h2>
+                    <p>Search specific pet details.</p>
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a href="login.php" class="browse-card">
+                    <img src="/clientserver/images/login.jpeg" alt="Log in" class="browse-icon">
+                    <h2>Login</h2>
+                    <p>Enter login details or sign up</p>
+                </a>
+            </div>
+			<div class="col-md-4 md-4">
+				<a href="/clientserver/map.php" class="browse-card">
+    			<img src="/clientserver/images/map.jpg" alt="Map" class="browse-icon">
+    			<h2>Map</h2>
+    			<p>View missing pets and sightings on a live map.</p>
+				</a>
+			</div>
+        </div>
+
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'owner'): ?>
+            <div class="text-center mt-5 mb-5">
+                <a href="manage.php" class="btn btn-primary-green btn-lg rounded-pill shadow-sm">
+                    Manage My Pets
+                </a>
+            </div>
+        <?php endif; ?>
+    </div>
+</section>
+
+<?php require('template/footer.phtml') ?>

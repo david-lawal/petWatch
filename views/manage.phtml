@@ -1,0 +1,54 @@
+<?php require('template/header.phtml') ?>
+
+<div class="container mt-5 mb-5">
+    <h1 class="text-center mb-4 fw-bold">Manage My Pets</h1>
+
+    <h4 class="fw-bold mb-3">Add a New Pet</h4>
+    <form method="POST" class="mb-5 p-4 border rounded shadow-sm bg-light">
+        <div class="row g-3">
+            <div class="col-md-4"><input type="text" name="name" class="form-control" placeholder="Pet Name" required></div>
+            <div class="col-md-4"><input type="text" name="species" class="form-control" placeholder="Species" required></div>
+            <div class="col-md-4"><input type="text" name="breed" class="form-control" placeholder="Breed"></div>
+            <div class="col-md-4"><input type="text" name="color" class="form-control" placeholder="Color"></div>
+            <div class="col-md-4">
+                <select name="status" class="form-select">
+                    <option value="lost">Lost</option>
+                    <option value="found">Found</option>
+                </select>
+            </div>
+            <div class="col-md-8">
+                <textarea name="description" class="form-control" placeholder="Description" rows="2"></textarea>
+            </div>
+            <div class="col-12 text-end">
+                <button type="submit" name="add" class="btn btn-primary-green rounded-pill">Add Pet</button>
+            </div>
+        </div>
+    </form>
+
+    <h4 class="fw-bold mb-3">My Pets</h4>
+    <?php if (empty($view->petDataSet)): ?>
+        <div class="alert alert-info text-center">You haven’t added any pets yet.</div>
+    <?php else: ?>
+        <div class="row">
+            <?php foreach ($view->petDataSet as $pet): ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card-body text-center border rounded shadow-sm bg-light p-3">
+                        <h5 class="fw-bold"><?= htmlspecialchars($pet->getName()) ?></h5>
+                        <p class="small">
+                            <?= htmlspecialchars($pet->getSpecies()) ?> (<?= htmlspecialchars($pet->getStatus()) ?>)
+                            <br><small><?= htmlspecialchars($pet->getDescription()) ?></small>
+                        </p>
+                        <form method="POST">
+                            <input type="hidden" name="pet_id" value="<?= htmlspecialchars($pet->getId()); ?>">
+                            <button type="submit" name="delete" class="btn btn-danger btn-sm rounded-pill">Remove</button>
+                        </form>
+                        <a href="editPet.php?pet_id=<?= htmlspecialchars($pet->getId()); ?>"
+                           class="btn btn-warning btn-sm rounded-pill ms-2">Edit</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+</div>
+
+<?php require('template/footer.phtml') ?>
