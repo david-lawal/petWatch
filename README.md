@@ -70,23 +70,23 @@ Responsible for processing requests and coordinating communication between model
 
 ### Home Page
 
-![Home Page](docs/screenshots/home.png)
+![Home Page](docs/screenshots/home.jpg)
 
 ### Search Pets
 
-![Search Pets](docs/screenshots/search.png)
+![Search Pets](docs/screenshots/search.jpg)
 
 ### Login Page
 
-![Login Page](docs/screenshots/login.png)
+![Login Page](docs/screenshots/login.jpg)
 
 ### Interactive Map
 
-![Interactive Map](docs/screenshots/map.png)
+![Interactive Map](docs/screenshots/map.jpg)
 
 ### Management Dashboard
 
-![Management Dashboard](docs/screenshots/manage.png)
+![Management Dashboard](docs/screenshots/manage.jpg)
 
 ---
 
